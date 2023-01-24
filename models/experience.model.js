@@ -28,8 +28,6 @@ const experienceSchema = new Schema({
 );
 
   
-// const Experience = model("Experience", experienceSchema);
 
-// module.exports = Review;
 
 exports.module = model ('Experience', experienceSchema)
