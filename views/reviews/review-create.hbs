@@ -1,0 +1,21 @@
+<h1>Hello</h1>
+
+<h2>{{username}} </h2>
+<form action="/review/create" method="POST">
+  <label for="">
+    Type Of Experience
+    <input type="text" name="typeOfExperience" value="{{typeOfExperience}}" />
+    Place Name
+    <input type="text" name="placeName" value="{{placeName}}" />
+    Add Picture
+    <input
+      type="image"
+      src="img_submit.gif"
+      alt="Submit"
+      width="48"
+      height="48"
+    />
+  </label>
+  <button type="submit"> Add Review</button>
+
+</form>
