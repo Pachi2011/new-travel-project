@@ -6,19 +6,22 @@ const userSchema = new Schema(
     username: {
       type: String,
       trim: true,
-      required: false,
+      required: true,
       unique: true
     },
+
     email: {
-      type: String,
-      required: true,
-      unique: true,
-      lowercase: true,
-      trim: true
+          type: String,
+          required: [true, 'Email is required.'],
+          
+          match: [/^\S+@\S+\.\S+$/, 'Please use a valid email address.'],
+          unique: true,
+          lowercase: true,
+           trim: true 
     },
-    password: {
-      type: String,
-      required: true
+    passwordHash: {
+          type: String,
+        required: [true, 'password']
     }
   },
   {
@@ -30,3 +33,9 @@ const userSchema = new Schema(
 const User = model("User", userSchema);
 
 module.exports = User;
+
+
+
+
+
+

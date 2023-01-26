@@ -1,4 +1,4 @@
-{{#each review }}
+
 
 {{typeOfExperience}}
 {{user_id}}
@@ -11,4 +11,12 @@
 {{price}}
 {{reviewText}}
 
-{{/each}}
+
+
+
+<form action="/review/{{_id}}/delete" method="post">
+<button type="submit"> Delete </button>
+
+</form>
+
+<a id= "al" href="/review/{{_id}}/edit"> Edit movie</a>
