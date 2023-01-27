@@ -1,8 +1,9 @@
 const router = require("express").Router();
-
 const Experience = require("../models/Experience.model.js");
+const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
 
-router.get("/review/create", (req, res) => {
+
+router.get("/review/create", isLoggedIn, (req, res) => {
   res.render("reviews/review-create");
 });
 
@@ -26,7 +27,7 @@ router.get("/review-list", (req, res, next) => {
 });
 
 
-router.get("/review/:reviewID", (req, res, next) => {
+router.get("/review/:reviewID", isLoggedIn, (req, res, next) => {
     Experience.findById(req.params.reviewID)
     .populate("user_id")
       .then((review) => {
