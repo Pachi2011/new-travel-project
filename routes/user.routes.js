@@ -4,7 +4,7 @@ const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
 
 
 router.get("/profile",  isLoggedIn, (req, res) => {
-  res.render("user/user-profile", { userInSession: req.session.currentUser });
+  res.render("user/user-profile");
 });
 
 
