@@ -10,7 +10,10 @@ const experienceSchema = new Schema(
     picture: [String],
     city: String,
     contry: String,
-    price: Number,
+    price: {
+    type: Number,
+    
+  },
     reviewText: String,
     headline: String,
     rating: {

@@ -22,7 +22,10 @@ const userSchema = new Schema(
     passwordHash: {
           type: String,
         required: [true, 'password']
-    }
+    },
+
+    review_id: [{ type: Schema.Types.ObjectId, ref: "Experience" }]
+
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`    

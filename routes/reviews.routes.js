@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Experience = require("../models/Experience.model.js");
 const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
+const User = require("../models/User.model.js");
 
 
 router.get("/review/create", isLoggedIn, (req, res) => {
@@ -9,14 +10,24 @@ router.get("/review/create", isLoggedIn, (req, res) => {
 
 
 router.post("/review/create", (req, res, next) => {
+  let review = {}
   const {typeOfExperience, placeName, picture, city, contry, price, reviewText, headline, rating, user_id} = req.body;
-  Experience.create({typeOfExperience, placeName, picture, city, contry, price, reviewText, headline, rating, user_id})
+  Experience.create({typeOfExperience, placeName, picture, city, contry, price, reviewText, headline, rating, user_id: req.session.currentUser._id}) //show user id in experince collection in DB
     .then((newReview) => {
+      review = newReview
       console.log(newReview);
-      res.redirect("/review-list");
     })
+
+    .then (()=>User.findById(review.user_id))
+    .then((user)=>{
+      user.review_id.push(review._id)  // pushing reviews of one user and putting them in one place
+      User.create(user) // ?
+    })
+    .then(() => res.redirect("/review-list")
+    )
     .catch((error) => next(error));
 });
+
 
 router.get("/review-list", (req, res, next) => {
   Experience.find()
