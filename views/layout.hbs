@@ -20,18 +20,14 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
+      {{#if userInSession}}
       <li class="nav-item active">
         <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/signup">Sign Up</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/login">Login</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="/review-list">Review List</a>
       </li>
+      
       <li class="nav-item">
         <a class="nav-link" href="/review/create">Create a Review</a>
       </li>
@@ -43,6 +39,14 @@
           <button>Logout</button> 
         </form>
    </li>
+  {{else}}
+      <li class="nav-item">
+        <a class="nav-link" href="/signup">Sign Up</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+   {{/if}}
     </ul>
   </div>
 </nav>

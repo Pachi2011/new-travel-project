@@ -1,9 +1,21 @@
 {{#if userInSession}}
   <h2>Welcome, {{ userInSession.username }}!</h2>
   <p>This is your profile page my friend!</p>
-  <button>
-    <a href="/profile">Reload the page</a>
-  </button>
+
+
+  <form action="/profile/{{userInSession._id}}/delete" method="POST">
+<button type="submit"> Delete </button>
+
+</form>
+
+ <form action="/profile/{{userInSession._id}}/edit" method="GET">
+<button type="submit"> Edit </button>
+
+</form>
+
+
+
+
 {{else}}
   
   <br><p>Still no logged in user, sorry!</p>

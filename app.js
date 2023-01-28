@@ -27,12 +27,19 @@ const projectName = "travel-review-project";
 
 app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 
+app.use((req, res, next) => {
+    app.locals.userInSession = req.session.currentUser
+   
+    next()
+})
+
 // 👇 Start handling routes here
 const indexRoutes = require("./routes/index.routes");
 app.use("/", indexRoutes);
 app.use("/", require("./routes/reviews.routes"));
 
 app.use('/', require("./routes/auth.routes"))
+app.use('/', require("./routes/user.routes"))
 
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes

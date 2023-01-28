@@ -58,7 +58,6 @@ router.get("/review/:reviewID", isLoggedIn, (req, res, next) => {
     })
   
     Experience.findById(req.params.reviewID)
-      // .populate("cast_id")
       .then((editReview) => {
         console.log("some words", editReview);
         res.render("reviews/review-edit", {editReview, reviewArray});
