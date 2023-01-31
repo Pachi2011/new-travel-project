@@ -11,15 +11,19 @@
 {{rating}}
 {{picture}}
 {{/each}} --}}
+<h1 id="h1_review-list">Review List</h1>
 {{#each allReviews}}
-<div class="card" style="width: 18rem;">
+<div class="card-deck">
+<div id="review_list" class="card bg-light border-info mb-3" style="width: 18rem;">
   <img class="card-img-top" src="{{picture}}" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">{{headline}}</h5>
     <p class="card-text">Type of Review: {{typeOfExperience}}</p>
     <p class="card-text">City: {{city}}, Country{{contry}}</p>
     <p class="card-text">Rating (1 - 5): {{rating}}</p>
-    <a href="/review/{{id}}" class="btn btn-primary">Details</a>
+    <a href="/review/{{id}}" class="btn btn-outline-info">Details</a>
   </div>
 </div>
+</div>
 {{/each}}
+

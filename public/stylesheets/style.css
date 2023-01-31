@@ -1,7 +1,16 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Fancy Font', sans-serif;
 }
+
+.body {
+  
+  background-color: #aed9e464; /* Light blue */
+  color: rgba(78, 75, 74, 0.783);
+  
+}
+
 
 a {
   color: #00b7ff;
@@ -10,3 +19,90 @@ a {
 h1 {
   color: 15px;
 }
+
+.gradient-custom-2 {
+  /* fallback for old browsers */
+  background: #fbc2eb;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to right,
+    rgba(251, 194, 235, 1),
+    rgba(166, 193, 238, 1)
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(
+    to right,
+    rgba(251, 194, 235, 1),
+    rgba(166, 193, 238, 1)
+  );
+}
+
+.logoImg {
+  height: 60px;
+  width: 160px;
+  margin-left: 50px;
+}
+
+nav {
+  margin-bottom: 5px;
+}
+
+#intro {
+  background-image: url("../images/img/shells-things-travel-light-background.jpg");
+  height: 100vh;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+@media (min-width: 992px) {
+  #intro {
+    margin-top: -58.59px;
+  }
+}
+
+.mask {
+  height: 100vh;
+}
+
+#form{
+
+  width: 40%; 
+  margin: 0 auto;
+  margin-top: 300px;
+}
+
+#form_signup{
+
+  width: 60%; 
+  margin: 0 auto;
+  margin-top: 300px;
+}
+
+#user_profile{
+
+  position: relative;
+
+  left: 40%;
+  
+}
+
+#review_list{
+
+  position: relative;
+
+  left: 40%;
+}
+
+#h1_review-list{
+
+ 
+  margin: 0 auto;
+  margin-top: 50px;
+
+}
+
+
+

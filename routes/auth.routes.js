@@ -3,13 +3,7 @@ const bcrypt = require("bcryptjs");
 const User = require("../models/User.model");
 const saltRounds = 10;
 const mongoose = require("mongoose");
-const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
-
-
-
-
-
-
+const { isLoggedIn, isLoggedOut } = require("../middleware/route-guard.js");
 
 router.get("/signup", isLoggedOut, (req, res) => {
   res.render("auth/sign-up");
@@ -77,8 +71,6 @@ router.get("/login", (req, res) => {
   res.render("auth/login");
 });
 
-
-
 router.post("/login", (req, res) => {
   console.log("SESSION =====> ", req.session);
   console.log(req.body);
@@ -115,13 +107,11 @@ router.post("/login", (req, res) => {
     });
 });
 
-
-router.post('/logout', (req, res, next) => {
-    req.session.destroy(err => {
-      if (err) next(err);
-      res.redirect('/');
-    });
+router.post("/logout", (req, res, next) => {
+  req.session.destroy((err) => {
+    if (err) next(err);
+    res.redirect("/");
   });
+});
 
-  
 module.exports = router;

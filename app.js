@@ -23,9 +23,9 @@ require("./config/session")(app);
 
 // default value for title local
 const capitalize = require("./utils/capitalize");
-const projectName = "travel-review-project";
+const projectName = "TripTip";
 
-app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
+app.locals.appTitle = `${capitalize(projectName)}  `; //add page(route) name
 
 app.use((req, res, next) => {
     app.locals.userInSession = req.session.currentUser
@@ -36,13 +36,16 @@ app.use((req, res, next) => {
 // 👇 Start handling routes here
 const indexRoutes = require("./routes/index.routes");
 app.use("/", indexRoutes);
-app.use("/", require("./routes/reviews.routes"));
-
 app.use('/', require("./routes/auth.routes"))
 app.use('/', require("./routes/user.routes"))
+app.use("/", require("./routes/reviews.routes"));
+
+
 
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
+
+
 
 module.exports = app;

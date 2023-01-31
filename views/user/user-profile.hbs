@@ -1,34 +1,33 @@
+
+<div id="user_profile">
 {{#if userInSession}}
-  <h2>Welcome, {{ userInSession.username }}!</h2>
-  <p>This is your profile page my friend!</p>
+  <h2>Welcome, {{userInSession.username}}!</h2>
+  <h4>This is your TravelTip profile</h4>
 
-
-  <form action="/profile/{{userInSession._id}}/delete" method="POST">
-<button type="submit"> Delete </button>
-
-</form>
-
- <form action="/profile/{{userInSession._id}}/edit" method="GET">
-<button type="submit"> Edit </button>
-
-</form>
-
-
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="{{picture}}" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">{{headline}}</h5>
-    <p class="card-text">Type of Review: {{typeOfExperience}}</p>
-    <p class="card-text">City: {{city}}, Country{{contry}}</p>
-    <p class="card-text">Rating (1 - 5): {{rating}}</p>
-    <a href="/review/{{_id}}" class="btn btn-primary">Details</a>
+  <br />
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{picture}}" alt="Card image cap" />
+    <div class="card-body">
+      <h5 class="card-title">{{headline}}</h5>
+      <p class="card-text">Type of Review: {{typeOfExperience}}</p>
+      <p class="card-text">City: {{city}}, Country: {{contry}}</p>
+      <p class="card-text">Rating (1 - 5): {{rating}}</p>
+      <a href="/review/{{_id}}" class="btn btn-outline-info">Details</a>
+    </div>
   </div>
-</div>
+  <br />
+  <form action="/profile/{{userInSession._id}}/delete" method="POST">
+    <button class="btn btn-outline-info"> Delete account </button>
+  </form>
+  <br />
+  <form action="/profile/{{userInSession._id}}/edit" method="GET">
+    <button class="btn btn-outline-info"> Edit profile </button>
 
-
+  </form>
 
 {{else}}
-  
-  <br><p>Still no logged in user, sorry!</p>
- 
+
+  <br /><p>Still no logged in user, sorry!</p>
+
 {{/if}}
+</div>
