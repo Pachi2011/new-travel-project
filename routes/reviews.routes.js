@@ -41,6 +41,7 @@ router.get("/review-list", (req, res, next) => {
 router.get("/review/:reviewID", isLoggedIn, (req, res, next) => {
     Experience.findById(req.params.reviewID)
     .populate("user_id")
+    
       .then((review) => {
         console.log(review);
         res.render("reviews/review-details", review);
@@ -103,5 +104,57 @@ router.get("/review/:reviewID", isLoggedIn, (req, res, next) => {
         console.log("error edit failed", error);
       });
   });
+
+
+
+
+  //comment route
+
+   router.post("review/:reviewID/comments", (req,res)=>{
+    let comment = {}
+    const {username, date, text, review_id } = req.body;
+    Comment.create({username,date,text, review_id: req.session.currentUser._id}) //show user id in experince collection in DB
+      .then((newComment) => {
+        comment = newComment
+        console.log(newComment);
+      })
+  
+    //  .then(() => res.redirect("/review")
+    //   )
+
+      .catch((error) => next(error));
+  });
+      
+
+      
+
+
+
+
+
+
+    
+
+  //   // INSTANTIATE INSTANCE OF MODEL
+  //   const comment = new Comment(req.body);
+
+  //  // SAVE INSTANCE OF Comment MODEL TO DB
+  //  comment
+  //   .save()
+  //   .then(() => Experience.findById(req.params.reviewId))
+  //   .then((createComment) => {
+  //     createComment.comments.push(comment);
+  //     return post.save();
+  //   })
+  //   .then(() => res.redirect('/review/:reviewID'))
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+
+
+
+
+
+
 
 module.exports = router;
