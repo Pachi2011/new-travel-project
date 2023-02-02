@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, default: mongoose } = require("mongoose");
 
 const experienceSchema = new Schema(
   {
@@ -22,11 +22,19 @@ const experienceSchema = new Schema(
     },
 
     user_id: { type: Schema.Types.ObjectId, ref: "User" },
+
+    comments: [{type: mongoose.Schema.Types.ObjectId, ref: "Comment"}],
   },
   {
     timestamps: true,
   }
 );
+
+// experienceSchema.virtual('url').get(function(){
+//   return '/post/' + this._id
+// })
+
+
 
 const Experience = model("Experience", experienceSchema);
 module.exports = Experience;
