@@ -7,7 +7,7 @@ const experienceSchema = new Schema(
       enum: ["restaurant", "hotel", "festival", "concert", "resort", "other"],
     },
     placeName: String,
-    picture: [String],
+    imageUrl: String,
     city: String,
     contry: String,
     price: {

@@ -4,7 +4,7 @@
 
 <h3>{{userInSession.username}} </h3>
 
-<form action="/review/create" method="POST">
+<form action="/review/create" method="POST" enctype="multipart/form-data">
   <div class="row g-3">
     <div class="col-auto">
 
@@ -34,17 +34,14 @@
         value="{{placeName}}"
       />
     </div>
-    <div class="form-group">
-      <label for="exampleFormControlFile1">Add Images</label>
-      <input
-        type="file"
-        class="form-control"
-        id="exampleFormControlFile1"
-        name="picture"
-        placeholder="Add Picture"
-        value="{{picture}}"
-      />
-    </div>
+    <div class="row">
+  <div class="col-md-6">
+    <form action="/review/create" method="post" enctype="multipart/form-data"> {{!-- !!! --}}
+      <div class="form-group">
+        <label>Title:
+          <input type="file" name="review-cover-image" class="form-control" />
+        </label>
+      </div>
     {{!-- <div class="col-auto ">
       <input type="text" class="form-control" name="picture" placeholder="Add Picture" value="{{picture}}">
     </div>  --}}

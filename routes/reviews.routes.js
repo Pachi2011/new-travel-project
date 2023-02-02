@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Experience = require("../models/Experience.model.js");
 const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
 const User = require("../models/User.model.js");
+const fileUploader = require('../config/cloudinary.config');
 
 
 router.get("/review/create", isLoggedIn, (req, res) => {
@@ -9,10 +10,10 @@ router.get("/review/create", isLoggedIn, (req, res) => {
 });
 
 
-router.post("/review/create", (req, res, next) => {
+router.post("/review/create", fileUploader.single('review-cover-image'), (req, res, next) => {
   let review = {}
-  const {typeOfExperience, placeName, picture, city, contry, price, reviewText, headline, rating, user_id} = req.body;
-  Experience.create({typeOfExperience, placeName, picture, city, contry, price, reviewText, headline, rating, user_id: req.session.currentUser._id}) //show user id in experince collection in DB
+  const {typeOfExperience, placeName, city, contry, price, reviewText, headline, rating, user_id} = req.body;
+  Experience.create({typeOfExperience,imageUrl: req.file.path , placeName, city, contry, price, reviewText, headline, rating, user_id: req.session.currentUser._id}) //show user id in experince collection in DB
     .then((newReview) => {
       review = newReview
       console.log(newReview);
@@ -25,7 +26,7 @@ router.post("/review/create", (req, res, next) => {
     })
     .then(() => res.redirect("/review-list")
     )
-    .catch((error) => next(error));
+    .catch((error) => next(error))
 });
 
 
