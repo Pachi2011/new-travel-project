@@ -11,7 +11,7 @@ router.get("/profile/:userID", isLoggedIn, (req, res) => {
   User.findById(req.session.currentUser._id)
     .populate("review_id")
     .then((user) => {
-      console.log(user);
+      // console.log(user);
       res.render("user/user-profile", user);
     })
     .catch((err) => next(err));
