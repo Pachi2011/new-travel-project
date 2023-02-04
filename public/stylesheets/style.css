@@ -120,7 +120,8 @@ cursor: pointer;
 border: 1px solid;
 border-color:#a2d3e5 ;
 border-radius: 12px;
-background-color: transparent;
+/* background-color: transparent; */
+
 height: 50px;
 width: 180px;
 color: rgba(78, 75, 74, 0.783);
@@ -128,9 +129,16 @@ font-size: 20px;
 
 box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
 
-background-image: linear-gradient(to right,#94dffa 0%, #b8e0ef 51%, #94dffa 100%);
+/* background-image: linear-gradient(to right,#94dffa 0%, #b8e0ef 51%, #94dffa 100%); */
+
+transition-duration: 0.4s;
+
 }
 
+#buttonStyle1:hover{
+  background-color: green;
+
+}
 
 .text-white{
   margin-right: 850px;
