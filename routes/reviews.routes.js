@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Experience = require("../models/Experience.model.js");
+const Experience = require("../models/experience.model.js");
 const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
 const User = require("../models/User.model.js");
 const fileUploader = require('../config/cloudinary.config');
