@@ -11,13 +11,6 @@
 {{reviewText}}
  --}}
 
-<form action="/review/{{_id}}/delete" method="post">
-  <button type="submit" class="btn btn-outline-info"> Delete </button>
-
-</form>
-
-<a id="al" href="/review/{{_id}}/edit" class="btn btn-outline-info">
-  Edit review</a>
 
 <section class="h-100 gradient-custom-2">
   <div class="container py-5 h-100">
@@ -29,7 +22,7 @@
             style="background-color: #35439c61; height:200px;"
           >
             {{! user profile image}}
-            <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+            {{!-- <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
               <img
                 src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
                 alt="Generic placeholder image"
@@ -45,7 +38,7 @@
               >
                 Edit profile
               </button>
-            </div>
+            </div> --}}
             <div class="ms-3" style="margin-top: 130px;">
               <h5>{{username}}</h5>
               <p>{{userCity}}</p>
@@ -116,6 +109,15 @@
                   class="w-100 rounded-3"
                 />
               </div>
+
+
+<a id="al" href="/review/{{_id}}/edit" class="btn btn-outline-info">
+  Edit review</a>
+
+                
+<form action="/review/{{_id}}/delete" method="post">
+  <button type="submit" class="btn btn-outline-info"> Delete Review</button>
+</form>
               
  <div class="conteiner pt-5">
    <div class="container">
