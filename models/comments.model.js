@@ -14,8 +14,6 @@ const { Schema, model, default: mongoose } = require("mongoose");
               default: Date.now
            },
 
-       
-
         review_id: {
               type: mongoose.Schema.Types.ObjectId,
               ref: 'Experience'

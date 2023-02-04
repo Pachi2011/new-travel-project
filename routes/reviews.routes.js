@@ -108,7 +108,7 @@ router.get("/review/:reviewID", isLoggedIn, (req, res, next) => {
 
 
 
-  //comment route
+  //comments route
 
    router.post("review/:reviewID/comments", (req,res)=>{
     let comment = {}

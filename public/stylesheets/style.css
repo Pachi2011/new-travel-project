@@ -1,20 +1,20 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Fancy Font', sans-serif;
+  font-family: 'Merriweather Sans', sans-serif;
 }
 
 .body {
   
-  background-color: #aed9e464; /* Light blue */
+  background-color: #b8e0ef; 
   color: rgba(78, 75, 74, 0.783);
-  
+  font-family: 'Merriweather Sans', sans-serif;
 }
 
 
-a {
+/* a {
   color: #00b7ff;
-}
+} */
 
 h1 {
   color: 15px;
@@ -40,6 +40,7 @@ h1 {
 }
 
 .logoImg {
+
   height: 60px;
   width: 160px;
   margin-left: 50px;
@@ -50,7 +51,7 @@ nav {
 }
 
 #intro {
-  background-image: url("../images/img/shells-things-travel-light-background.jpg");
+  background-image: url("../images/img/BackgroundAlex.JPG");
   height: 100vh;
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
@@ -71,14 +72,14 @@ nav {
 
   width: 40%; 
   margin: 0 auto;
-  margin-top: 300px;
+  margin-top: 250px;
 }
 
 #form_signup{
 
-  width: 60%; 
+  width: 50%; 
   margin: 0 auto;
-  margin-top: 300px;
+  margin-top: 250px;
 }
 
 #user_profile{
@@ -104,6 +105,76 @@ nav {
 
 }
 
+.buttonStyle1{
+
+margin-top: 30px; 
+
+/* color: #2ea1da; */
+cursor: pointer;
+border: 1px solid;
+border-color:#a2d3e5 ;
+border-radius: 12px;
+background-color: transparent;
+height: 50px;
+width: 180px;
+color: rgba(78, 75, 74, 0.783);
+font-size: 20px;
+
+box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
+
+background-image: linear-gradient(to right,#94dffa 0%, #b8e0ef 51%, #94dffa 100%);
+}
 
 
+.text-white{
+  margin-right: 850px;
+  font-family: 'Merriweather Sans', sans-serif;
+  
+
+}
+
+.mb-3 {
+  
+  font-family: 'Merriweather Sans', sans-serif;
+}
+
+.mb-4{
+  font-family: 'Merriweather Sans', sans-serif;
+}
+
+.nav-link {
+  font-family: 'Merriweather Sans', sans-serif;
+ 
+  
+
+}
+
+.nav-item{
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.form-group{
+
+  font-family: 'Merriweather Sans', sans-serif;
+}
+
+
+.LogoutBTN{
+
+  margin-left: 680px;
+cursor: pointer;
+border: 1px solid;
+border-color:#a2d3e5 ;
+border-radius: 12px;
+background-color: transparent;
+/* height: 50px;
+width: 180px; */
+color: rgba(78, 75, 74, 0.783);
+font-size: 20px;
+
+box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
+
+background-image: linear-gradient(to right,#94dffa 0%, #b8e0ef 51%, #94dffa 100%);
+}
 

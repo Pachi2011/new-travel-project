@@ -12,12 +12,14 @@
  --}}
 
 <form action="/review/{{_id}}/delete" method="post">
-  <button type="submit" class="btn btn-outline-info"> Delete </button>
+  <button type="submit" class="buttonStyle1"> Delete </button>
 
 </form>
 
-<a id="al" href="/review/{{_id}}/edit" class="btn btn-outline-info">
-  Edit review</a>
+<form action="/review/{{_id}}/edit">
+  <button type="submit" class="buttonStyle1"> Edit Review </button>
+
+</form>
 
 <section class="h-100 gradient-custom-2">
   <div class="container py-5 h-100">
@@ -132,7 +134,7 @@
 
     <textarea class='form-control' name="comments" placeholder="Comment"></textarea>
       <div class="text-right">
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="buttonStyle1">Save</button>
       </div>
 
 
