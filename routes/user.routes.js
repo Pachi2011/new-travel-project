@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const User = require("../models/User.model.js");
-const Experience = require("../models/Experience.model.js");
 
 const { isLoggedIn, isLoggedOut } = require("../middleware/route-guard.js");
 
