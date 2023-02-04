@@ -99,10 +99,16 @@ nav {
 
 #h1_review-list{
 
- 
+  width: 17%; 
   margin: 0 auto;
   margin-top: 50px;
+  margin-bottom: 20px;
 
+}
+
+#commentDate{
+
+  font-size: 12px;
 }
 
 .buttonStyle1{

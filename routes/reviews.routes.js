@@ -1,7 +1,9 @@
 const router = require("express").Router();
-const Experience = require("../models/Experience.model.js");
+const Experience = require("../models/experience.model.js");
 const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
 const User = require("../models/User.model.js");
+const fileUploader = require('../config/cloudinary.config');
+const Comment = require("../models/comments.model.js");
 
 
 router.get("/review/create", isLoggedIn, (req, res) => {
@@ -9,10 +11,10 @@ router.get("/review/create", isLoggedIn, (req, res) => {
 });
 
 
-router.post("/review/create", (req, res, next) => {
+router.post("/review/create", fileUploader.single('review-cover-image'), (req, res, next) => {
   let review = {}
-  const {typeOfExperience, placeName, picture, city, contry, price, reviewText, headline, rating, user_id} = req.body;
-  Experience.create({typeOfExperience, placeName, picture, city, contry, price, reviewText, headline, rating, user_id: req.session.currentUser._id}) //show user id in experince collection in DB
+  const {typeOfExperience, placeName, city, contry, price, reviewText, headline, rating, user_id} = req.body;
+  Experience.create({typeOfExperience,imageUrl: req.file.path , placeName, city, contry, price, reviewText, headline, rating, user_id: req.session.currentUser._id}) //show user id in experince collection in DB
     .then((newReview) => {
       review = newReview
       console.log(newReview);
@@ -25,7 +27,7 @@ router.post("/review/create", (req, res, next) => {
     })
     .then(() => res.redirect("/review-list")
     )
-    .catch((error) => next(error));
+    .catch((error) => next(error))
 });
 
 
@@ -40,8 +42,7 @@ router.get("/review-list", (req, res, next) => {
 
 router.get("/review/:reviewID", isLoggedIn, (req, res, next) => {
     Experience.findById(req.params.reviewID)
-    .populate("user_id")
-    
+      .populate({ path: "user_id comments", select: "-passwordHash" })
       .then((review) => {
         console.log(review);
         res.render("reviews/review-details", review);
@@ -63,16 +64,12 @@ router.get("/review/:reviewID", isLoggedIn, (req, res, next) => {
 
 
   router.get("/review/:reviewID/edit", (req, res) => {
-    let reviewArray = []
-    Experience.find()
-    .then(reviewEdit =>{
-      reviewArray= reviewEdit
-    })
+
   
     Experience.findById(req.params.reviewID)
       .then((editReview) => {
         console.log("some words", editReview);
-        res.render("reviews/review-edit", {editReview, reviewArray});
+        res.render("reviews/review-edit", {editReview});
       })
       .catch((error) => {
         console.log("biiig error", error);
@@ -108,20 +105,20 @@ router.get("/review/:reviewID", isLoggedIn, (req, res, next) => {
 
 
 
-  //comments route
+  //comment route
 
-   router.post("review/:reviewID/comments", (req,res)=>{
-    let comment = {}
-    const {username, date, text, review_id } = req.body;
-    Comment.create({username,date,text, review_id: req.session.currentUser._id}) //show user id in experince collection in DB
+   router.post("/review/:reviewID/comments", (req, res, next)=>{
+    console.log('this is the comment route')
+    const {username, date, text } = req.body;
+    const { reviewID } = req.params
+    let commentId
+    Comment.create({ username, date, text, review_id: reviewID }) //show user id in experince collection in DB
       .then((newComment) => {
-        comment = newComment
-        console.log(newComment);
+        commentId = newComment._id
+        
+        return Experience.findByIdAndUpdate(reviewID, { $addToSet: { comments: commentId }}, { new: true })
       })
-  
-    //  .then(() => res.redirect("/review")
-    //   )
-
+      .then(() => res.redirect(`/review/${reviewID}`))
       .catch((error) => next(error));
   });
       

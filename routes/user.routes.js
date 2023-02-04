@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const User = require("../models/User.model.js");
-const Experience = require("../models/Experience.model.js");
 
 const { isLoggedIn, isLoggedOut } = require("../middleware/route-guard.js");
 
@@ -12,7 +11,7 @@ router.get("/profile/:userID", isLoggedIn, (req, res) => {
   User.findById(req.session.currentUser._id)
     .populate("review_id")
     .then((user) => {
-      console.log(user);
+      // console.log(user);
       res.render("user/user-profile", user);
     })
     .catch((err) => next(err));
