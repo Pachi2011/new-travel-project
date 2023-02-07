@@ -75,16 +75,17 @@ nav {
 
 #form{
 
-  width: 40%; 
+  width: 50%; 
   margin: 0 auto;
-  margin-top: 300px;
+  padding-top: 300px;
 }
 
 #form_signup{
 
-  width: 60%; 
+  width: 50%; 
   margin: 0 auto;
-  margin-top: 300px;
+  padding-top: 300px;
+  
 }
 
 #user_profile{
@@ -247,6 +248,24 @@ background-image: linear-gradient(to right,#94dffa 0%, #b8e0ef 51%, #94dffa 100%
   
   transition-duration: 0.4s;
   
+  }
+
+  #signupBg {
+    background-image: url("/images/img/Back-for-sign-login.PNG");
+    height: 100vh;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    margin-top: 0px;
+  }
+
+  #loginBg{
+    background-image: url("/images/img/Back-for-sign-login.PNG");
+    height: 100vh;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    margin-top: 0px;
   }
   
   
