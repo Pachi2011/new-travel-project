@@ -4,7 +4,10 @@ const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
 const User = require("../models/User.model.js");
 const fileUploader = require('../config/cloudinary.config');
 const Comment = require("../models/comments.model.js");
+const countryAPi = require("../hotelApi/index.js");
 
+const getCountries = countryAPi.getCountries
+const getCountryInfo = countryAPi.getCountryInfo
 
 router.get("/review/create", isLoggedIn, (req, res) => {
   res.render("reviews/review-create");
@@ -13,8 +16,14 @@ router.get("/review/create", isLoggedIn, (req, res) => {
 
 router.post("/review/create", fileUploader.single('review-cover-image'), (req, res, next) => {
   let review = {}
+  let imageUrl 
+  if (req.file){
+    imageUrl = req.file.path
+  } else {
+    imageUrl = undefined
+  }
   const {typeOfExperience, placeName, city, contry, price, reviewText, headline, rating, user_id} = req.body;
-  Experience.create({typeOfExperience,imageUrl: req.file.path , placeName, city, contry, price, reviewText, headline, rating, user_id: req.session.currentUser._id}) //show user id in experince collection in DB
+  Experience.create({typeOfExperience, imageUrl , placeName, city, contry, price, reviewText, headline, rating, user_id: req.session.currentUser._id}) //show user id in experince collection in DB
     .then((newReview) => {
       review = newReview
       console.log(newReview);
@@ -32,6 +41,7 @@ router.post("/review/create", fileUploader.single('review-cover-image'), (req, r
 
 
 router.get("/review-list", (req, res, next) => {
+
   Experience.find()
     .then((allReviews) => {
       res.render("reviews/review-list", {allReviews});
@@ -40,14 +50,20 @@ router.get("/review-list", (req, res, next) => {
 });
 
 
-router.get("/review/:reviewID", isLoggedIn, (req, res, next) => {
-    Experience.findById(req.params.reviewID)
-      .populate({ path: "user_id comments", select: "-passwordHash" })
-      .then((review) => {
-        console.log(review);
-        res.render("reviews/review-details", review);
-      })
-      .catch((err) => next(err));
+router.get("/review/:reviewID", isLoggedIn, (req, res, next) => { 
+  let review
+  Experience.findById(req.params.reviewID)
+    .populate({ path: "user_id comments", select: "-passwordHash" })
+    .then((reviewFromDB) => {
+      // .toObject() is a mongoose method that transform the document to a JS object
+      // Why? Because we are spreading the review on line 64
+      review = reviewFromDB.toObject() 
+      return getCountryInfo(reviewFromDB.contry) //geting info about one country using axios
+    })
+    .then(responseFromAxios => {
+      res.render("reviews/review-details", { ...review, country: responseFromAxios.data[0]});
+    })
+    .catch((err) => next(err));
   });
 
 
@@ -76,21 +92,29 @@ router.get("/review/:reviewID", isLoggedIn, (req, res, next) => {
       });
   });
   
-  router.post("/review/:reviewID/edit", (req, res) => {
-    const {typeOfExperience, placeName, picture, city, contry, price, reviewText, headline, rating, user_id} = req.body;
+  router.post("/review/:reviewID/edit",fileUploader.single('review-cover-image'), (req, res) => {
+
+    let imageUrl 
+    if (req.file){
+      imageUrl = req.file.path
+    } else {
+      imageUrl = undefined
+    }
+
+    const {typeOfExperience, placeName, city, contry, price, reviewText, headline, rating, user_id} = req.body;
     Experience.findByIdAndUpdate(req.params.reviewID, {
 
       typeOfExperience: typeOfExperience,
-       placeName: placeName,
-       picture: picture,
-       city: city,
-       contry: contry,
-        price: price,
-        reviewText: reviewText,
-        headline: headline,
-         rating: rating,
-         user_id: user_id,
-    
+      placeName: placeName,
+      imageUrl: imageUrl,
+      city: city,
+      contry: contry,
+      price: price,
+      reviewText: reviewText,
+      headline: headline,
+      rating: rating,
+      user_id: user_id,
+
     })
   
       .then((editResult) => {

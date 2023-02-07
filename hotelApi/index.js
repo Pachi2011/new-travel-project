@@ -1,17 +1,12 @@
-const getCountryInfo = countryName => {
-  axios
-    .get(`https://restcountries.com/v2/name/${country}`)
-    .then(response => {
-      console.log('Response from API is: ', response);
-      const countryDetail = response.data.country;
-      console.log('a single country details: ', countryDetail);
+const axios = require('axios')
 
-      res.render('apiTrip');
-    })
-    .catch(err => console.log(err));
+const getCountryInfo = (countryName) => {
+  return axios.get(`https://restcountries.com/v3.1/name/${countryName}`)    
 };
- 
-document.getElementById('get-country-btn').addEventListener('click', () => {
-  const userInput = document.getElementById('country-name-input').value;
-  getCountryInfo(userInput);
-});
+
+const getCountries = (countryName) => {
+  return axios.get(`https://restcountries.com/v3.1/all`)    
+};
+
+
+module.exports = { getCountryInfo, getCountries }
