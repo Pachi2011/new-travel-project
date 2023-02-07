@@ -11,14 +11,14 @@
 {{reviewText}}
  --}}
 
-<form action="/review/{{_id}}/delete" method="post">
+{{!-- <form action="/review/{{_id}}/delete" method="post">
   <button type="submit" class="btn btn-outline-info"> Delete </button>
 
 </form>
 
 <a id="al" href="/review/{{_id}}/edit" class="btn btn-outline-info">
-  Edit review</a>
-
+  Edit review</a> --}}
+ 
 <section class="h-100 gradient-custom-2">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -28,6 +28,7 @@
             class="rounded-top text-white d-flex flex-row"
             style="background-color: #35439c61; height:200px;"
           >
+         
             {{! user profile image}}
             {{!-- <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
               <img
@@ -47,13 +48,13 @@
               </button>
             </div> --}}
             <div class="ms-3" style="margin-top: 130px;">
-              <h5>{{username}}</h5>
-              <p>{{userCity}}</p>
+              
             </div>
           </div>
           <div class="p-4 text-black" style="background-color: #f8f9fa;">
             <div class="d-flex justify-content-end text-center py-1">
-              <div>
+              
+              {{!-- <div>
                 <p class="mb-1 h5">253</p>
                 <p class="small text-muted mb-0">Photos</p>
               </div>
@@ -64,7 +65,7 @@
               <div>
                 <p class="mb-1 h5">478</p>
                 <p class="small text-muted mb-0">Following</p>
-              </div>
+              </div> --}}
             </div>
           </div>
           <div class="card-body p-4 text-black">
@@ -101,21 +102,7 @@
                 />
               </div>
             </div>
-            <div class="row g-2">
-              <div class="col">
-                <img
-                  src={{imageUrl}}
-                  alt="image 1"
-                  class="w-100 rounded-3"
-                />
-              </div>
-              <div class="col">
-                <img
-                  src={{imageUrl}}
-                  alt="image 1"
-                  class="w-100 rounded-3"
-                />
-              </div>
+           
 
 
 <a id="al" href="/review/{{_id}}/edit" class="btn btn-outline-info">
