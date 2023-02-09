@@ -49,22 +49,42 @@ router.get("/review-list", (req, res, next) => {
     .catch((err) => next(err));
 });
 
-
-router.get("/review/:reviewID", isLoggedIn, (req, res, next) => { 
-  let review
+router.get("/review/:reviewID", isLoggedIn, (req, res, next) => {
+  let review;
   Experience.findById(req.params.reviewID)
     .populate({ path: "user_id comments", select: "-passwordHash" })
     .then((reviewFromDB) => {
-      // .toObject() is a mongoose method that transform the document to a JS object
-      // Why? Because we are spreading the review on line 64
-      review = reviewFromDB.toObject() 
-      return getCountryInfo(reviewFromDB.contry) //geting info about one country using axios
+      review = reviewFromDB.toObject();
+      return Promise.all([
+        getCountryInfo(reviewFromDB.contry),
+        getCountries(reviewFromDB.contry)
+      ]);
     })
-    .then(responseFromAxios => {
-      res.render("reviews/review-details", { ...review, country: responseFromAxios.data[0]});
+    .then(([countryInfo, countries]) => {
+      res.render("reviews/review-details", {
+        ...review,
+        country: countryInfo.data[0],
+        countries: countries.data[0]
+      });
     })
     .catch((err) => next(err));
-  });
+});
+
+// router.get("/review/:reviewID", isLoggedIn, (req, res, next) => { 
+//   let review
+//   Experience.findById(req.params.reviewID)
+//     .populate({ path: "user_id comments", select: "-passwordHash" })
+//     .then((reviewFromDB) => {
+//       // .toObject() is a mongoose method that transform the document to a JS object
+//       // Why? Because we are spreading the review on line 64
+//       review = reviewFromDB.toObject() 
+//       return getCountryInfo (reviewFromDB.contry) //geting info about one country using axios
+//     })
+//     .then(responseFromAxios => {
+//       res.render("reviews/review-details", { ...review, country: responseFromAxios.data[0]});
+//     })
+//     .catch((err) => next(err));
+//   });
 
 
   router.post("/review/:reviewID/delete", (req, res) => {
