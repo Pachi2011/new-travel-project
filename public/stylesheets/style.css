@@ -269,3 +269,19 @@ background-image: linear-gradient(to right,#94dffa 0%, #b8e0ef 51%, #94dffa 100%
   }
   
   
+  .card-img-end{
+    /* display: flex;
+    flex-wrap: nowrap;
+    padding: 5px; */
+
+    
+    border-bottom-left-radius: calc(.25rem - 3px);
+    border-top-left-radius: calc(.25rem - 1px);
+    float: left;
+    padding-right: 1em;
+      /* margin-bottom: -1.25em; */
+    object-fit: cover;
+    }
+  
+
+  

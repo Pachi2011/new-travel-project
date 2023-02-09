@@ -60,7 +60,7 @@
 
     <div class="container">
   <div class="row">
-    <div class="col-sm 1">
+    <div class="col-sm-3 1">
 
       {{#if userInSession}}
       <br>
@@ -69,15 +69,9 @@
   <img class="card-img-top" src="..\images\img\IMG_0411.JPG" alt="Card image cap">
   <div class="card-body UserCard">
     <h5 class="card-title">{{userInSession.username}}</h5>
-    <p class="card-text"> Bio info</p>
+    <p class="card-text"> {{email}} </p>
   </div>
-  {{!-- <div class="UserCard"> --}}
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">{{email}}</li>
-    <li class="list-group-item">-</li>
-    <li class="list-group-item">-</li>
-  </ul>
-  {{!-- </div> --}}
+  
   <div class="card-body UserCard">
 
     <form action="/profile/{{userInSession._id}}/delete" method="POST">
@@ -95,13 +89,19 @@
 </div>
     </div>
 
-    <div class="col-sm-7 2">
+
+
+    <div class="col-sm-6 2">
+
+     <br>
       
+
         {{#each review_id}}
   <br />
-  <div class="card Usercard" style="width: 18rem;">
-    <img class="card-img-top" src="{{imageUrl}}" alt="Card image cap" />
-    <div class="card-body">
+  <div class="card row flex-row-reverse" style="width: 42rem;">
+    <img class="col-lg-4 card-img-end img-fluid p-0 userCardBody" src="{{imageUrl}}" alt="Card image cap" />
+    
+    <div class="col-lg-8 card-body">
       <h5 class="card-title">{{headline}}</h5>
       <p class="card-text">Type of Review: {{typeOfExperience}}</p>
       <p class="card-text">City: {{city}}, Country: {{contry}}</p>
@@ -113,9 +113,21 @@
 {{/each}} 
     </div>
 
-    <div class="col-sm 3">
+    <div class="col-sm-3 3">
       {{!-- One of three columns --}}
       
+    {{!-- <div class="card" style="width: 18rem;">
+  <div class="card-header">
+    Featured
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Cras justo odio</li>
+    <li class="list-group-item">Dapibus ac facilisis in</li>
+    <li class="list-group-item">Vestibulum at eros</li>
+  </ul>
+</div> --}}
+
+
     
     </div>
 
